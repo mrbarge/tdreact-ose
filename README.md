@@ -12,7 +12,7 @@ oc new-app -e POSTGRESQL_USER=$USER -e POSTGRESQL_PASSWORD=$PASS \
   -e POSTGRESQL_DATABASE=users --name=users-db centos/postgresql-95-centos7
 ```
 
-# Users service
+## Users service
 
 First, a new entrypoint script was created that does not check for 
 the users-db database service via nc (as it is not installed as 
