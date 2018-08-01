@@ -22,5 +22,12 @@ Then:
 
 ```bash
 oc new-app centos/python-36-centos7~https://github.com/mrbarge/tdreact \
-  --context-dir=services/users -e APP_SCRIPT=manage.py
+  --context-dir=services/users -e APP_SCRIPT=entrypoint-ose.sh \
+  --name=users
+```
+
+And create a route:
+
+```bash
+oc create route --edge --service-users
 ```
