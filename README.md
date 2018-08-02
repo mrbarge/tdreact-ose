@@ -31,3 +31,18 @@ And create a route:
 ```bash
 oc create route edge --service=users
 ```
+
+We may want to add a readiness check on the service to not accept
+incoming connections until the database pod is active.
+
+Depending upon what commands may be available in the pod, there
+are different ways to conduct this check. In lieu of tools like
+nc, socat, telnet (etc), we can do a simple
+check in python. Here's how that readiness proble would look:
+
+```bash
+oc set probe dc/users --readiness --\
+   python -c 'import socket; s = \
+   socket.socket(socket.AF_INET, socket.SOCK_STREAM); \
+   s.connect(("users-db",5432));'
+```
