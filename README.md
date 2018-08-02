@@ -29,5 +29,5 @@ oc new-app centos/python-36-centos7~https://github.com/mrbarge/tdreact \
 And create a route:
 
 ```bash
-oc create route --edge --service=users
+oc create route edge --service=users
 ```
