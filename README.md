@@ -22,8 +22,11 @@ Then:
 
 ```bash
 oc new-app centos/python-36-centos7~https://github.com/mrbarge/tdreact \
-  --context-dir=services/users -e APP_SCRIPT=entrypoint-ose.sh \
-  --name=users
+  --context-dir=services/users --name=users \
+  -e APP_SCRIPT=entrypoint-ose.sh \
+  -e DATABASE_URL=postgres://$USER:$PASS@users-db:5432/users_dev \
+  -e FLASK_ENV=development \
+  -e APP_SETTINGS=project.config.DevelopmentConfig
 ```
 
 And create a route:
